@@ -2,6 +2,7 @@ import { useState, useEffect, createContext, useContext } from "react";
 import { Routes, Route } from "react-router-dom";
 import { useFetch } from "./hooks/useFetch.js";
 import MainMenu from "./pages/MainMenu.jsx";
+import StoryLoading from "./pages/StoryModeLoading.jsx";
 import SettingsBlock from "./pages/SettingsPage.jsx";
 import styled from "styled-components";
 import "./App.css";
@@ -40,6 +41,8 @@ function App() {
       <Routes>
         <Route path="/" element={<MainMenu />} />
         <Route path="/settings" element={<SettingsBlock />} />
+        <Route path="/storymode" element={<StoryLoading />} />
+        <Route path="/quit" element={<QuitBlock />} />
       </Routes>
     </>
   );

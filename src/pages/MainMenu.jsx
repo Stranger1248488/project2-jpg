@@ -29,7 +29,9 @@ function MainMenu() {
             <MenuBlock />
           </div>
           <div id="button-location">
-            <MenuButton className="menuBtn">QUIT</MenuButton>
+            <Link to="/quit">
+              <MenuButton className="menuBtn">QUIT</MenuButton>
+            </Link>
             <Link to="/settings">
               <MenuButton className="menuBtn">SETTINGS</MenuButton>
             </Link>
@@ -37,7 +39,9 @@ function MainMenu() {
               2X GPA$ & XP ON GYM BATTLES
             </MenuButton>
             <MenuButton className="menuBtn">ONLINE</MenuButton>
-            <MenuButton className="menuBtn">STORY MODE</MenuButton>
+            <Link to="/storymode">
+              <MenuButton className="menuBtn">STORY MODE</MenuButton>
+            </Link>
           </div>
         </div>
       </div>
