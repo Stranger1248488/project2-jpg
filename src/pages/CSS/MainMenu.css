@@ -1,0 +1,31 @@
+#button-location {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0;
+  width: 100%;
+  padding: 18px 40px 18px 0;
+  background-image: linear-gradient(
+    to right,
+    rgba(32, 32, 32, 0),
+    rgba(32, 32, 32, 0.6)
+  );
+}
+
+#button-location .menuBtn {
+  font-family: helvetica, sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.75);
+  text-transform: uppercase;
+  padding: 10px 28px;
+  cursor: pointer;
+  transition: color 0.15s ease;
+  white-space: nowrap;
+}
+
+#button-location .menuBtn:hover {
+  color: #ffffff;
+}

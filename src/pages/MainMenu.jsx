@@ -1,0 +1,48 @@
+import { useState, useEffect, createContext, useContext } from "react";
+import { Routes, Route } from "react-router-dom";
+import { useFetch } from "../hooks/useFetch.js";
+import { Link } from "react-router-dom";
+import "./CSS/MainMenu.css";
+import SettingsBlock from "./SettingsPage.jsx";
+import styled from "styled-components";
+import MenuBlock from "../resources/elements/MenuBlock.jsx";
+
+export const Context = createContext();
+
+let randomBackground = Math.floor(Math.random() * 6) + 1;
+const MenuButton = styled.p`
+  font-family: helvetica;
+  font-size: 24px;
+`;
+
+function MainMenu() {
+  const [data, loading, error] = useFetch(
+    "https://pokeapi.co/api/v2/pokemon?limit=9",
+  );
+  const [background, setBackground] = useState(randomBackground);
+
+  return (
+    <>
+      <div id="menu-layout">
+        <div id="mainMenuBlock">
+          <div id="menu-sponsor-block">
+            <MenuBlock />
+          </div>
+          <div id="button-location">
+            <MenuButton className="menuBtn">QUIT</MenuButton>
+            <Link to="/settings">
+              <MenuButton className="menuBtn">SETTINGS</MenuButton>
+            </Link>
+            <MenuButton className="menuBtn">
+              2X GPA$ & XP ON GYM BATTLES
+            </MenuButton>
+            <MenuButton className="menuBtn">ONLINE</MenuButton>
+            <MenuButton className="menuBtn">STORY MODE</MenuButton>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
+
+export default MainMenu;

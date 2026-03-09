@@ -1,4 +1,4 @@
-#root {
+/* #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
@@ -39,4 +39,111 @@
 
 .read-the-docs {
   color: #888;
+}
+ */
+
+/* ----------------------------- HOME PAGE LAYOUT ------------------------- */
+
+/* #button-location {
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  margin-bottom: 40px;
+  max-width: 1080px;
+
+  background-image: linear-gradient(
+    to right,
+    rgba(32, 32, 32, 0),
+    rgba(32, 32, 32, 0.6)
+  );
+}
+#button-location .menuBtn {
+  padding: 10px;
+} */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body,
+html {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+#background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+}
+
+#menu-layout {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+#button-location {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0;
+  width: 100%;
+  padding: 18px 40px 18px 0;
+  background-image: linear-gradient(
+    to right,
+    rgba(32, 32, 32, 0),
+    rgba(32, 32, 32, 0.6)
+  );
+}
+
+#button-location .menuBtn {
+  font-family: helvetica, sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.75);
+  text-transform: uppercase;
+  padding: 10px 28px;
+  cursor: pointer;
+  transition: color 0.15s ease;
+  white-space: nowrap;
+}
+
+#button-location .menuBtn:hover {
+  color: #ffffff;
+}
+
+#GPALogo {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 320px;
+  padding: 24px;
+  z-index: 10;
+}
+
+#pokemon-icon {
+  position: fixed;
+  width: 600px;
+  bottom: -50px;
+  left: 100px;
+}
+
+#pokemon-icon img {
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }
