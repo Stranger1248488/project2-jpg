@@ -1,13 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { AudioContext } from "../App.jsx";
 import { Link } from "react-router-dom";
 import "./CSS/SettingsPage.css";
 
 function SettingsBlock() {
   const [selectedSetting, setSelectedSetting] = useState("graphics");
   const [graphics, setGraphics] = useState("medium");
+  const { audioRef, clickySound } = useContext(AudioContext);
 
   function handleSettingClick(setting) {
     setSelectedSetting(setting);
+    clickySound.play();
   }
 
   return (
@@ -36,9 +39,30 @@ function SettingsBlock() {
             <div>
               <h3>Graphics Settings</h3>
               <p>Current Quality: {graphics}</p>
-              <button onClick={() => setGraphics("low")}>Low</button>
-              <button onClick={() => setGraphics("medium")}>Medium</button>
-              <button onClick={() => setGraphics("high")}>High</button>
+              <button
+                onClick={() => {
+                  setGraphics("low");
+                  clickySound.play();
+                }}
+              >
+                Low
+              </button>
+              <button
+                onClick={() => {
+                  setGraphics("medium");
+                  clickySound.play();
+                }}
+              >
+                Medium
+              </button>
+              <button
+                onClick={() => {
+                  setGraphics("high");
+                  clickySound.play();
+                }}
+              >
+                High
+              </button>
             </div>
           )}
           {selectedSetting === "notifications" && (
@@ -51,11 +75,11 @@ function SettingsBlock() {
       </div>
       <div className="decisionBlock">
         <Link to="/">
-          <div className="decisionBtn">
+          <div className="decisionBtn" onClick={() => clickySound.play()}>
             <p>Back</p>
           </div>
         </Link>
-        <div className="decisionBtn">
+        <div className="decisionBtn" onClick={() => clickySound.play()}>
           <p>Save</p>
         </div>
       </div>

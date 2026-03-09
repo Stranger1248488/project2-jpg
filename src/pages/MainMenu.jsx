@@ -1,4 +1,5 @@
 import { useState, useEffect, createContext, useContext } from "react";
+import { AudioContext } from "../App.jsx";
 import { Routes, Route } from "react-router-dom";
 import { useFetch } from "../hooks/useFetch.js";
 import { Link } from "react-router-dom";
@@ -7,7 +8,7 @@ import SettingsBlock from "./SettingsPage.jsx";
 import styled from "styled-components";
 import MenuBlock from "../resources/elements/MenuBlock.jsx";
 
-export const Context = createContext();
+// export const Context = createContext();
 
 let randomBackground = Math.floor(Math.random() * 6) + 1;
 const MenuButton = styled.p`
@@ -20,6 +21,7 @@ function MainMenu() {
     "https://pokeapi.co/api/v2/pokemon?limit=9",
   );
   const [background, setBackground] = useState(randomBackground);
+  const { audioRef, clickySound } = useContext(AudioContext);
 
   return (
     <>
@@ -30,17 +32,39 @@ function MainMenu() {
           </div>
           <div id="button-location">
             <Link to="/quit">
-              <MenuButton className="menuBtn">QUIT</MenuButton>
+              <MenuButton
+                className="menuBtn"
+                onClick={() => clickySound.play()}
+              >
+                QUIT
+              </MenuButton>
             </Link>
             <Link to="/settings">
-              <MenuButton className="menuBtn">SETTINGS</MenuButton>
+              <MenuButton
+                className="menuBtn"
+                onClick={() => clickySound.play()}
+              >
+                SETTINGS
+              </MenuButton>
             </Link>
-            <MenuButton className="menuBtn">
+            <MenuButton
+              className="menuBtn"
+              onClick={() => {
+                audioRef.current.muted = !audioRef.current.muted;
+              }}
+            >
               2X GPA$ & XP ON GYM BATTLES
             </MenuButton>
-            <MenuButton className="menuBtn">ONLINE</MenuButton>
+            <MenuButton className="menuBtn" onClick={() => clickySound.play()}>
+              ONLINE
+            </MenuButton>
             <Link to="/storymode">
-              <MenuButton className="menuBtn">STORY MODE</MenuButton>
+              <MenuButton
+                className="menuBtn"
+                onClick={() => clickySound.play()}
+              >
+                STORY MODE
+              </MenuButton>
             </Link>
           </div>
         </div>

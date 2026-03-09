@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { AudioContext } from "../App.jsx";
 import { Link } from "react-router-dom";
 import { useFetch } from "../hooks/useFetch.js";
 import "./CSS/StoryModeLoading.css";
@@ -16,7 +17,7 @@ function StoryLoading() {
   );
   const [nosferatu, setNosferatu] = useState(false);
   const [visible, setVisible] = useState(false);
-
+  const { audioRef, clickySound } = useContext(AudioContext);
   const photoDump = {
     imgSrc: [
       "images/Backgrounds/loading/Load1.png",
@@ -138,7 +139,7 @@ function StoryLoading() {
         </div>
         <div className="decisionBlock">
           <Link to="/">
-            <div className="decisionBtn">
+            <div className="decisionBtn" onClick={() => clickySound.play()}>
               <p>Return to menu</p>
             </div>
           </Link>
