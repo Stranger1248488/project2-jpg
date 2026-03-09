@@ -5,6 +5,8 @@ import MainMenu from "./pages/MainMenu.jsx";
 import StoryLoading from "./pages/StoryModeLoading.jsx";
 import SettingsBlock from "./pages/SettingsPage.jsx";
 import QuitBlock from "./pages/Desktop.jsx";
+import SettingsAlert from "./pages/SettingsAlert.jsx";
+import SettingsSavePage from "./pages/SettingsSavePage.jsx";
 import styled from "styled-components";
 import "./App.css";
 
@@ -21,6 +23,7 @@ function App() {
     "https://pokeapi.co/api/v2/pokemon?limit=9",
   );
   const [background, setBackground] = useState(randomBackground);
+  // const [graphics, setGraphics] = useState("medium");
   const audioRef = useRef(null);
   const clickySound = new Audio("/images/UIAssets/menuSound.wav");
 
@@ -49,6 +52,8 @@ function App() {
         <Route path="/settings" element={<SettingsBlock />} />
         <Route path="/storymode" element={<StoryLoading />} />
         <Route path="/quit" element={<QuitBlock />} />
+        <Route path="/settings/save" element={<SettingsSavePage />} />
+        <Route path="/settings/alert" element={<SettingsAlert />} />
       </Routes>
     </AudioContext.Provider>
   );

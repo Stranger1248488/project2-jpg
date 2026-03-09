@@ -1,17 +1,49 @@
 import { useState, useEffect, useContext } from "react";
 import { AudioContext } from "../App.jsx";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./CSS/SettingsPage.css";
+let trackedChange = false;
 
 function SettingsBlock() {
   const [selectedSetting, setSelectedSetting] = useState("graphics");
+  const [graphicsCache, setGraphicsCache] = useState(null);
   const [graphics, setGraphics] = useState("medium");
   const { audioRef, clickySound } = useContext(AudioContext);
+  let navigate = useNavigate();
 
   function handleSettingClick(setting) {
     setSelectedSetting(setting);
     clickySound.play();
   }
+  function changeGraphics(quality) {
+    setGraphicsCache(quality);
+    if (graphics !== quality) {
+      console.log("change made");
+      trackedChange = true;
+    }
+    clickySound.play();
+  }
+
+  function exitSettings() {
+    clickySound.play();
+    if (trackedChange && graphics !== graphicsCache) {
+      navigate("/settings/alert");
+      trackedChange = false;
+    } else {
+      navigate("/");
+    }
+  }
+
+  function saveSettings() {
+    clickySound.play();
+    if (trackedChange && graphics !== graphicsCache) {
+      // save process here
+      navigate("/settings/save");
+      trackedChange = false;
+    }
+  }
+
+  console.log("status of trackedChange: ", trackedChange);
 
   return (
     <>
@@ -39,26 +71,24 @@ function SettingsBlock() {
             <div>
               <h3>Graphics Settings</h3>
               <p>Current Quality: {graphics}</p>
+              <p>Selected Quality: {graphicsCache}</p>
               <button
                 onClick={() => {
-                  setGraphics("low");
-                  clickySound.play();
+                  changeGraphics("low");
                 }}
               >
                 Low
               </button>
               <button
                 onClick={() => {
-                  setGraphics("medium");
-                  clickySound.play();
+                  changeGraphics("medium");
                 }}
               >
                 Medium
               </button>
               <button
                 onClick={() => {
-                  setGraphics("high");
-                  clickySound.play();
+                  changeGraphics("high");
                 }}
               >
                 High
@@ -74,12 +104,10 @@ function SettingsBlock() {
         </div>
       </div>
       <div className="decisionBlock">
-        <Link to="/">
-          <div className="decisionBtn" onClick={() => clickySound.play()}>
-            <p>Back</p>
-          </div>
-        </Link>
-        <div className="decisionBtn" onClick={() => clickySound.play()}>
+        <div className="decisionBtn" onClick={() => exitSettings()}>
+          <p>Back</p>
+        </div>
+        <div className="decisionBtn" onClick={() => saveSettings()}>
           <p>Save</p>
         </div>
       </div>

@@ -51,6 +51,8 @@ function MainMenu() {
               className="menuBtn"
               onClick={() => {
                 audioRef.current.muted = !audioRef.current.muted;
+                audioRef.current.volume = 0.6;
+                clickySound.play();
               }}
             >
               2X GPA$ & XP ON GYM BATTLES
